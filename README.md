@@ -11,4 +11,5 @@
 * share on github.com/romsenkabomsen/dev-capstone-backend
 
 # Todo:
+* accessing jpa data with rest
 * create workflow for continuous development
