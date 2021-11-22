@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  db:
+    container_name: capstone_db
+    image: "postgres"
+    env_file:
+      - database.env
+    volumes:
+      - database-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  database-data:
