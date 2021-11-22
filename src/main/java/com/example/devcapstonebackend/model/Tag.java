@@ -23,11 +23,7 @@ public class Tag {
     @NotNull
     private String tag;
 
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
+    public Tag(String tag){
         this.tag = tag;
     }
 }
