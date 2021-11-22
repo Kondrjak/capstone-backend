@@ -21,17 +21,18 @@ public class CodepointGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    //todo: make unique in table
     @NotNull
     @Size(max = 128)
     private String name;
 
     @NotNull
     @ElementCollection
-    private List<Integer> codepoints;
+    private List<Codepoint> codepoints;
 
     @NotNull
-    @ElementCollection
-    private List<String> tags;
+    @ManyToMany
+    private List<Tag> tags;
 
     public String getName() {
         return name;
@@ -41,19 +42,19 @@ public class CodepointGroup {
         this.name = name;
     }
 
-    public List<Integer> getCodepoints() {
+    public List<Codepoint> getCodepoints() {
         return codepoints;
     }
 
-    public void setCodepoints(List<Integer> codepoints) {
+    public void setCodepoints(List<Codepoint> codepoints) {
         this.codepoints = codepoints;
     }
 
-    public List<String> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(List<String> tags) {
+    public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 }
