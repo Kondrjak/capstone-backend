@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @AllArgsConstructor
@@ -17,13 +21,17 @@ public class CodepointGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull
+    @Size(max = 128)
     private String name;
 
+    @NotNull
     @ElementCollection
-    private Collection<String> codepoints;
+    private List<Integer> codepoints;
 
+    @NotNull
     @ElementCollection
-    private Collection<String> tags;
+    private List<String> tags;
 
     public String getName() {
         return name;
@@ -33,19 +41,19 @@ public class CodepointGroup {
         this.name = name;
     }
 
-    public Collection<String> getCodepoints() {
+    public List<Integer> getCodepoints() {
         return codepoints;
     }
 
-    public void setCodepoints(Collection<String> codepoints) {
+    public void setCodepoints(List<Integer> codepoints) {
         this.codepoints = codepoints;
     }
 
-    public Collection<String> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(Collection<String> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 }
