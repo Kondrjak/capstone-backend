@@ -14,6 +14,9 @@ import java.util.Collection;
 public class CodepointGroup {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private String name;
 
     @ElementCollection
@@ -21,6 +24,14 @@ public class CodepointGroup {
 
     @ElementCollection
     private Collection<String> tags;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Collection<String> getCodepoints() {
         return codepoints;
