@@ -14,17 +14,15 @@ import java.util.Collection;
 public class CodepointGroup {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String name;
 
     @ElementCollection
-    @Column(nullable=false)
     private Collection<String> codepoints;
 
     @ElementCollection
-    @Column(nullable=false)
     private Collection<String> tags;
 
     public String getName() {
