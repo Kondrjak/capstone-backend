@@ -2,6 +2,7 @@ package com.example.devcapstonebackend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 
 @Entity
 @AllArgsConstructor
@@ -28,11 +30,11 @@ public class CodepointGroup {
 
     @NotNull
     @ElementCollection
-    private List<Codepoint> codepoints;
+    private List<String> codepoints;
 
     @NotNull
-    @ManyToMany
-    private List<Tag> tags;
+    @ElementCollection
+    private List<String> tags;
 
     public String getName() {
         return name;
@@ -42,19 +44,19 @@ public class CodepointGroup {
         this.name = name;
     }
 
-    public List<Codepoint> getCodepoints() {
+    public List<String> getCodepoints() {
         return codepoints;
     }
 
-    public void setCodepoints(List<Codepoint> codepoints) {
+    public void setCodepoints(List<String> codepoints) {
         this.codepoints = codepoints;
     }
 
-    public List<Tag> getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(List<Tag> tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 }
