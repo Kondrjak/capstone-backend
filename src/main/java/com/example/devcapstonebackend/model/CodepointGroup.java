@@ -20,9 +20,11 @@ public class CodepointGroup {
     private String name;
 
     @ElementCollection
+    @Column(nullable=false)
     private Collection<String> codepoints;
 
     @ElementCollection
+    @Column(nullable=false)
     private Collection<String> tags;
 
     public String getName() {
