@@ -10,6 +10,9 @@
 * Health Check, get https://dev-capstone-backend.herokuapp.com/health returns "Hello there! I'm running"
 * share on github.com/romsenkabomsen/dev-capstone-backend
 
+* heroku addons:create heroku-postgresql
+* heroku pg:psql
+* add dependency Tomcat JDBC
 # Todo:
 * accessing jpa data with rest
 * create workflow for continuous development
