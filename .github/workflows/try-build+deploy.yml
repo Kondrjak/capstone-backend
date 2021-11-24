@@ -13,10 +13,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - uses: actions/download-artifact@v2
-        with:
-          name: frontend-Build
-          path: backend/src/main/resources/static
       - name: Build with maven
         run: mvn -B package --file backend/pom.xml
       - uses: actions/upload-artifact@v2
@@ -39,10 +35,10 @@ jobs:
           name: app.jar
           path: backend/target
       - name: Login to Heroku
-        run: heroku container:login
+        run: heroku login
       - name: Push docker container
-        run: heroku container:push web -a saleio
+        run: heroku container:push web -a dev-capstone-backend
       - name: Deploy docker container
-        run: heroku container:release web -a saleio
+        run: heroku container:release web -a dev-capstone-backend
       - name: Connect to postgres DB
-        run: heroku pg:psql postgresql-vertical-61863 --app saleio# This is a basic workflow to help you get started with Actions
+        run: heroku pg:psql postgresql-vertical-61863 --app dev-capstone-backend
