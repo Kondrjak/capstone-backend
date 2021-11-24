@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  test-and-build:
+  try-test-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,8 +22,7 @@ jobs:
           name: app.jar
           path: target/app.jar
           
-  deploy-to-heroku:
-    needs: test-and-build
+  try-deploy-to-heroku:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
