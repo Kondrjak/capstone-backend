@@ -1,7 +1,8 @@
 # Run on local machine
 * install docker and docker-compose
-* run "docker-compose up" in root directory
-* database 
+* run "docker-compose up" in root directory - your database should now be ready to used by your build
+* install maven
+* run mvn build, mvn test
 
 # Done:
 * Spring initializr with deps: Rest Repositories, Spring Data JPA, H2 Database, Lombok
@@ -17,7 +18,7 @@
 * heroku addons:create heroku-postgresql
 * heroku pg:psql
 * create codepoint group data class and restful api repo
+* create workflow for continuous development
 
 # Todo:
-* get postgresql to work
-* create workflow for continuous development
+* get postgresql to work on local machine in docker and connect to postgresql (exposed from docker) to local build
