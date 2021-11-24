@@ -14,11 +14,11 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Build with maven
-        run: mvn -B package --file backend/pom.xml
+        run: mvn -B package --file pom.xml
       - uses: actions/upload-artifact@v2
         with:
           name: app.jar
-          path: backend/target/app.jar
+          path: target/app.jar
 
   deploy-heroku:
     runs-on: ubuntu-latest
