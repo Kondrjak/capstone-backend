@@ -23,6 +23,7 @@ jobs:
           path: target/app.jar
           
   deploy-to-heroku:
+    needs: test-and-build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
