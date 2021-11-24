@@ -20,7 +20,7 @@ public class CodepointGroup {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    //todo: make unique in table
+    @Column(unique=true)
     @NotNull
     @Size(max = 128)
     private String name;
