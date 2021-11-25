@@ -1,4 +1,4 @@
-package com.example.devcapstonebackend.model;
+package neuefische.capstone.backend.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
