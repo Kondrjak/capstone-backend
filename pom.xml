@@ -87,6 +87,8 @@
                 <configuration>
                     <systemPropertyVariables>
                         <JDBC_DATABASE_URL>jdbc:h2:mem:test</JDBC_DATABASE_URL>
+                        <JDBC_DATABASE_USERNAME>user</JDBC_DATABASE_USERNAME>
+                        <JDBC_DATABASE_PASSWORD>password</JDBC_DATABASE_PASSWORD>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
