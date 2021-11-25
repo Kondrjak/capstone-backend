@@ -19,6 +19,4 @@ otherwise the database will be missing
 * create codepoint group data class and restful api repo
 * create workflow for continuous development
 * use h2 db for local testing
-* protect main
-
 

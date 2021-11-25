@@ -1,0 +1,35 @@
+name: Test and Test if deployment works
+on:
+  push:
+  workflow_dispatch:
+  
+jobs:
+  try-test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+      #- name: Test with Maven
+      #  run: mvn test
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+      - uses: actions/upload-artifact@v2
+        with:
+          name: app.jar
+          path: target/app.jar
+          
+  try-deploy-to-heroku:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+           heroku_app_name: dev-capstone-backend
+           heroku_email: ${{ secrets.HEROKU_MAIL }}
+           healthcheck: https://dev-capstone-backend.herokuapp.com/health
+           checkstring: "Hello there! I'm running."
