@@ -21,7 +21,7 @@ class CredentialServiceTest {
         when(credentialRepo.findById("invalid")).thenReturn(Optional.empty());
 
         // WHEN
-        // calling: credentialService.loadUserByUsername("invalid");
+        // credentialService.loadUserByUsername("invalid")
 
         // THEN
         assertThrows(UsernameNotFoundException.class, ()->credentialService.loadUserByUsername("invalid"));

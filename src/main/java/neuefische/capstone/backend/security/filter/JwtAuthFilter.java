@@ -1,10 +1,8 @@
 package neuefische.capstone.backend.security.filter;
 
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
 import neuefische.capstone.backend.security.service.JwtService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -14,7 +12,6 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.NotNull;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,7 +22,7 @@ import java.util.List;
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
+    private JwtService jwtService;
 
     @Autowired
     public JwtAuthFilter(JwtService jwtService) {
@@ -34,14 +31,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
-            @Nullable HttpServletRequest request,
-            @Nullable HttpServletResponse response,
-            @Nullable FilterChain filterChain) throws ServletException, IOException {
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain) throws ServletException, IOException {
 
-        String token = null;
-        if (request != null) {
-            token = this.getTokenString(request);
-        }
+        String token = this.getTokenString(request);
         try {
             if (token != null && !token.isBlank()) {
                 String username = jwtService.parseUsername(token);
@@ -53,17 +47,17 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             // response.sendError(HttpServletResponse.SC_FORBIDDEN);
             // log.error("No valid token!", e);
         }
-        if (filterChain != null) {
-            filterChain.doFilter(request, response);
-        }
+        filterChain.doFilter(request, response);
     }
 
     /**
      *
-     * @param username - a string between 0 and 32 chars
+     * @param username
      */
     private void setSecurityContext(String username) {
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+        UsernamePasswordAuthenticationToken authToken
+                =
+                new UsernamePasswordAuthenticationToken(
                         username,
                         "",
                         List.of());

@@ -1,23 +1,30 @@
 package neuefische.capstone.backend.security.userCredentialModel;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Builder
+@Getter
 public class Credential {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    Long id;
 
+    @Column(unique=true)
+    @NotNull
+    @Size(max = 32)
     String username;
+
+    @NotNull
+    @Size(max = 128)
     String password;
 }

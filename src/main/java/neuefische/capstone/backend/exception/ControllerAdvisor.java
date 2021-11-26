@@ -9,11 +9,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.NoSuchElementException;
 
 /**
- * Exceptions thrown at any controller will be handled
- * by functions defined in this class in order to prevent
- * httpStatus 500 default response.
- * Status 500 is inappropriate in most cases,
- * since it expresses that the server had crashed.
+ * Exceptions thrown at any controller will be handled by functions defined in this class in order to prevent
+ * httpStatus 500 default response. Status 500 telling server crashed is inappropriate in most cases.
  *
  * @annotation  RestControllerAdvice - catches all controller exceptions and redirects them to be handled here
  *                                   - https://www.bezkoder.com/spring-boot-restcontrolleradvice/
@@ -22,9 +19,9 @@ import java.util.NoSuchElementException;
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
     /**
-     * First exception handler in this class has the highest priority
-     * @param e - NoSuchElementException
-     * @return ApiError - Ressource not found! and stack-trace of e
+     * First exception handler in this class has highest priority
+     * @param e -
+     * @return ApiError: Ressource not found
      */
     @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -45,9 +42,9 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * Last exception handler in this class handles all other throwables
+     * Last exception handler in this class handles all other throwable
      * @param t - throwable
-     * @return ApiError - Exception of unknown behaviour!
+     * @return
      */
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

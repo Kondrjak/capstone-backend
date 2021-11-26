@@ -1,7 +1,7 @@
 package neuefische.capstone.backend.security.service;
 
-import neuefische.capstone.backend.security.storage.CredentialRepo;
 import neuefische.capstone.backend.security.userCredentialModel.Credential;
+import neuefische.capstone.backend.security.storage.CredentialRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +24,7 @@ public class CredentialService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        Optional<Credential> maybeCredential = repo.findById(username);
+        Optional<Credential> maybeCredential = repo.findByUsername(username);
         return maybeCredential
                 .map(credential -> User
                         .withUsername(credential.getUsername())
