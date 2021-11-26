@@ -1,2 +1,0 @@
---"$2a$10$vc2ciqSGFRUDYnjdBgIjzOnAlGlCA6xLfhDk6fjvSb7TF0nntTmF2" is an encryption of the string "password"
-INSERT INTO Credential (ID, username, password) VALUES (0,'user','$2a$10$vc2ciqSGFRUDYnjdBgIjzOnAlGlCA6xLfhDk6fjvSb7TF0nntTmF2');

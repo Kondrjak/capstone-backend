@@ -1,8 +1,8 @@
 # Setup on your local machine
 * install maven
-* run mvn build for building, mvn test for testing
-* when using other frameworks, make sure that environment variable JDBC_DATABASE_URL="jdbc:h2:mem:test" is passed on build and test,
-otherwise the database will be missing
+* run "mvn test" for testing
+* run "mvn build -DargLine="-JDBC_DATABASE_URL=jdbc:h2:mem:test -AUTH_JWT_SECRET=someTestSecret"
+* when using other frameworks make sure the environment variables JDBC_DATABASE_URL and AUTH_JWT_SECRET are set as above
 
 # Todo:
 * integrate spring security and o-auth

@@ -1,9 +1,9 @@
 package neuefische.capstone.backend.security.controler;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
 import neuefische.capstone.backend.security.storage.CredentialRepo;
 import neuefische.capstone.backend.security.userCredentialModel.Credential;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,10 +37,10 @@ class LoginControllerTest {
 
         // GIVEN
         String hashedPw = passwordEncoder.encode("some-password");
-        credentialsRepo.save(Credential.builder().username("user").password(hashedPw).build());
+        credentialsRepo.save(Credential.builder().username("some-user").password(hashedPw).build());
 
         // WHEN
-        Credential appUser = Credential.builder().username("user").password("some-password").build();
+        Credential appUser = Credential.builder().username("some-user").password("some-password").build();
         ResponseEntity<String> response = restTemplate
                 .postForEntity(
                         "/auth/login",
@@ -54,6 +54,6 @@ class LoginControllerTest {
                 .setSigningKey(JWT_SECRET)
                 .parseClaimsJws(response.getBody())
                 .getBody();
-        assertThat(claims.getSubject(), is("user"));
+        assertThat(claims.getSubject(), is("some-user"));
     }
 }
