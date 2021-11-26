@@ -30,7 +30,7 @@ class CredentialControllerTest {
     @Test
     void getMe_shouldReturnUsersCredentials_withHttpStatusOK_ifUserIsAuthenticated() {
         // GIVEN
-        HttpHeaders testUserJwtHeaders = jwtHeaders.get();
+        HttpHeaders testUserJwtHeaders = jwtHeaders.get(port);
         RequestBuilder<String> request = new RequestBuilder<>(String.class, testUserJwtHeaders);
 
         // WHEN
