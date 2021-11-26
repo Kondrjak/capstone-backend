@@ -12,8 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.startsWith;
+import static org.hamcrest.Matchers.*;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -33,7 +32,7 @@ class LoginControllerThrowsTest {
      * getMe_shouldReturnUsersCredentials_withHttpStatusOK_ifUserIsAuthenticated
      */
     @Test
-    void login_WithInvalidCredentials_ShouldReturnError() {
+    void post_WithInvalidCredentials_ShouldReturnError() {
         // GIVEN
         Credential invalidCredentials = Credential.builder().username("user").password("WRONG_PASSWORD").build();
         // WHEN
@@ -45,8 +44,7 @@ class LoginControllerThrowsTest {
         assertThat(response.getStatusCode(), is(HttpStatus.UNAUTHORIZED));
         assertThat(
                 response.getBody(),
-                startsWith("{\"text\":\"Api Error: Username and/or password are not valid!\"," +
-                        "\"exceptionMessage\":\"Ungültige Anmeldedaten")
+                containsString("Api Error: Username and/or password are not valid!")
         );
     }
 
