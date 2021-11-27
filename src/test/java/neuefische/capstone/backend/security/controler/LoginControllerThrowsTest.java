@@ -2,7 +2,10 @@ package neuefische.capstone.backend.security.controler;
 
 import neuefische.capstone.backend.security.service.JwtService;
 import neuefische.capstone.backend.security.storage.CredentialRepo;
-import neuefische.capstone.backend.security.userCredentialModel.Credential;
+import neuefische.capstone.backend.security.storage.PrivilegeRepo;
+import neuefische.capstone.backend.security.storage.RoleRepo;
+import neuefische.capstone.backend.security.model.Credential;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,8 +27,22 @@ class LoginControllerThrowsTest {
     @Autowired
     private JwtService jwtService;
 
+
     @Autowired
-    private CredentialRepo credentialRepo;
+    CredentialRepo credentialRepo;
+
+    @Autowired
+    PrivilegeRepo privilegeRepo;
+
+    @Autowired
+    RoleRepo roleRepo;
+
+    @AfterEach
+    public void clearRepos(){
+        credentialRepo.deleteAll();
+        roleRepo.deleteAll();
+        privilegeRepo.deleteAll();
+    }
 
     /**
      * test throws cause of unknown injection problems when in same test class with
@@ -41,10 +58,10 @@ class LoginControllerThrowsTest {
                                                                     String.class
         );
         // THEN
-        assertThat(response.getStatusCode(), is(HttpStatus.UNAUTHORIZED));
+        assertThat(response.getStatusCode(), is(HttpStatus.FORBIDDEN));
         assertThat(
                 response.getBody(),
-                containsString("Api Error: Username and/or password are not valid!")
+                containsString("Forbidden")
         );
     }
 

@@ -1,18 +1,18 @@
 package neuefische.capstone.backend.security.service;
 
-import neuefische.capstone.backend.security.userCredentialModel.Credential;
+import neuefische.capstone.backend.security.model.Credential;
 import neuefische.capstone.backend.security.storage.CredentialRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 
-@Component
+@Service
 public class CredentialService implements UserDetailsService {
     private final CredentialRepo repo;
 

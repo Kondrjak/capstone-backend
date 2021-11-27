@@ -1,6 +1,6 @@
 package neuefische.capstone.backend.security.controler;
 
-import neuefische.capstone.backend.security.userCredentialModel.Credential;
+import neuefische.capstone.backend.security.model.Credential;
 import neuefische.capstone.backend.security.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,9 +1,12 @@
 package neuefische.capstone.backend.security.controler;
 
 import neuefische.capstone.backend.security.storage.CredentialRepo;
-import neuefische.capstone.backend.security.userCredentialModel.Credential;
+import neuefische.capstone.backend.security.storage.PrivilegeRepo;
+import neuefische.capstone.backend.security.storage.RoleRepo;
+import neuefische.capstone.backend.security.model.Credential;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,20 +27,33 @@ class LoginControllerTest {
     private TestRestTemplate restTemplate;
 
     @Autowired
-    private CredentialRepo credentialsRepo;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Value("${jwt.service.secret.string}")
     private String JWT_SECRET;
+
+    @Autowired
+    private CredentialRepo credentialRepo;
+
+    @Autowired
+    PrivilegeRepo privilegeRepo;
+
+    @Autowired
+    RoleRepo roleRepo;
+
+    @AfterEach
+    public void clearRepos() {
+        credentialRepo.deleteAll();
+        privilegeRepo.deleteAll();
+        roleRepo.deleteAll();
+    }
 
     @Test
     void post_withValidCredentials_ShouldReturnValidJwt_withHttpStatusOk() {
 
         // GIVEN
         String hashedPw = passwordEncoder.encode("some-password");
-        credentialsRepo.save(Credential.builder().username("some-user").password(hashedPw).build());
+        credentialRepo.save(Credential.builder().username("some-user").password(hashedPw).build());
 
         // WHEN
         Credential appUser = Credential.builder().username("some-user").password("some-password").build();
