@@ -1,10 +1,12 @@
-# Setup on local machine
+# Setup on your local machine
 * install maven
-* run mvn build for building, mvn test for testing
+* run "mvn test" for testing
+* run "mvn build -DargLine="-JDBC_DATABASE_URL=jdbc:h2:mem:test -AUTH_JWT_SECRET=someTestSecret"
+* when using other frameworks make sure the environment variables JDBC_DATABASE_URL and AUTH_JWT_SECRET are set as above
 
 # Todo:
-* protect main
 * integrate spring security and o-auth
+* make application.properties database.dialect environment dependent
 
 # Done:
 * Spring initializr with deps: Rest Repositories, Spring Data JPA, H2 Database, Lombok

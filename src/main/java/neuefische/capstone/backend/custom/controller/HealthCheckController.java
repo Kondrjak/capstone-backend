@@ -1,4 +1,4 @@
-package com.example.devcapstonebackend;
+package neuefische.capstone.backend.custom.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,3 +10,4 @@ public class HealthCheckController {
         return "Hello there! I'm running.";
     }
 }
+

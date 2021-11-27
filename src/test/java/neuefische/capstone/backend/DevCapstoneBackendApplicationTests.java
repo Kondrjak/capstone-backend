@@ -1,4 +1,4 @@
-package com.example.devcapstonebackend;
+package neuefische.capstone.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

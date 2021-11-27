@@ -1,13 +1,13 @@
-package com.example.devcapstonebackend;
+package neuefische.capstone.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DevCapstoneBackendApplication {
+public class DevQuizApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DevCapstoneBackendApplication.class, args);
+        SpringApplication.run(DevQuizApplication.class, args);
     }
 
 }
