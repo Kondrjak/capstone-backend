@@ -10,5 +10,5 @@ import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "tag", path = "tag")
 public interface TagRessource extends PagingAndSortingRepository<Tag, Long> {
-    List<CodepointGroup> findByName(@Param("name") String name);
+    List<Tag> findByName(@Param("name") String name);
 }

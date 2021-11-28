@@ -110,12 +110,11 @@ class TagRessourceTest {
     @Test
     public void deleteExistentTag_withoutBindingToOtherEntities_shouldDeleteTag(){
         // GIVEN
-        Tag tag = Tag.builder().name("mobile").build();
-        RequestBuilder<Tag> request = new RequestBuilder<>(Tag.class, jwtHeaders, port);
-        request.postForEntity("tag", tag);
+        Tag tag = Tag.builder().name("veryUniqueTestTag").build();
+        Tag tagWithId = tagRepo.save(tag);
         // WHEN
         RequestBuilder<String> deleteRequest = new RequestBuilder<>(String.class, jwtHeaders, port);
-        ResponseEntity<String> deleteResponse = deleteRequest.deleteForEntity("tag/1");
+        ResponseEntity<String> deleteResponse = deleteRequest.deleteForEntity("tag/"+tagWithId.getId());
         // THEN
         assertThat(deleteResponse.getStatusCode(), is(HttpStatus.NO_CONTENT)); //Statuscode: 204
     }
@@ -137,7 +136,7 @@ class TagRessourceTest {
         // WHEN
         RequestBuilder<String> deleteRequest = new RequestBuilder<>(String.class, jwtHeaders, port);
         try {
-            ResponseEntity<String> deleteResponse = deleteRequest.deleteForEntity("tag/"+tagWithId.getId());
+            deleteRequest.deleteForEntity("tag/"+tagWithId.getId());
             fail("There should had been an error, but was not");
         }catch (Exception e){
             assertThat(e.getMessage(), containsString("409"));
