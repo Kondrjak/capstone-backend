@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="UnitypeBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <module name="dev-capstone-backend" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="neuefische.capstone.backend.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="SPRING_BOOT_MAIN_CLASS" value="neuefische.capstone.backend.UnitypeBackendApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+    <envs>
+      <env name="AUTH_JWT_SECRET" value="&quot;somestuff&quot;" />
+      <env name="JDBC_DATABASE_URL" value="jdbc:h2:mem:test " />
+      <env name="MY_GITHUB_CLIENT_ID" value="2e78a31afe900fd1aef7" />
+      <env name="MY_GITHUB_CLIENT_SECRET" value="ee6bf4d225d84f355ad4a7b98220a159a9a67552" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

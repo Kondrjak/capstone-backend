@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="All in dev-capstone-backend" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+    <module name="dev-capstone-backend" />
+    <option name="PACKAGE_NAME" value="" />
+    <option name="MAIN_CLASS_NAME" value="" />
+    <option name="METHOD_NAME" value="" />
+    <option name="TEST_OBJECT" value="package" />
+    <envs>
+      <env name="AUTH_JWT_SECRET" value="&quot;somestuff&quot;" />
+      <env name="JDBC_DATABASE_URL" value="jdbc:h2:mem:test " />
+      <env name="MY_GITHUB_CLIENT_ID" value="2e78a31afe900fd1aef7" />
+      <env name="MY_GITHUB_CLIENT_SECRET" value="ee6bf4d225d84f355ad4a7b98220a159a9a67552" />
+    </envs>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
