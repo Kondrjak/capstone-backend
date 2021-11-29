@@ -52,17 +52,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
     }
 
-
     /**
-     * Override parent class method to configure {@link WebSecurity}.
+     * Override parent class method to configure Websecurity.
      * For example, if you wish to ignore certain requests.
      *
      * Endpoints specified in this method will be ignored by Spring Security, meaning it
      * will not protect them from CSRF, XSS, Clickjacking, and so on.
-     *
-     * Instead, if you want to protect endpoints against common vulnerabilities,
-     * then see {@link #configure(HttpSecurity)} and the
-     * {@link HttpSecurity#authorizeRequests} configuration method.
      *
      * @param http - the httpSecurity, that is configured
      * @throws Exception
@@ -72,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/login").permitAll()
+                .antMatchers("/auth/login/github").permitAll()
                 .antMatchers("/health").permitAll()
                 .antMatchers("/**").permitAll()
                 .and().addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
