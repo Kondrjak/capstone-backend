@@ -23,7 +23,7 @@ import java.util.HashMap;
 @RequestMapping("/auth/login")
 public class LoginController {
 
-    @Value("http://localhost:3000/")
+    @Value("http://dev-capstone-frontend.herokuapp.com/")
     String redirectUrl;
 
     private final AuthenticationManager authenticationManager;
