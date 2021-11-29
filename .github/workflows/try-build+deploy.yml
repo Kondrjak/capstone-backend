@@ -19,7 +19,7 @@ jobs:
       #- name: Test with Maven
       #  run: mvn test
       - name: Build with Maven
-        run: mvn -B package --file pom.xml -DargLine="-MY_GITHUB_CLIENT_ID=2e78a31afe900fd1aef7 -MY_GITHUB_CLIENT_SECRET=ee6bf4d225d84f355ad4a7b98220a159a9a67552"
+        run: mvn -DargLine="-MY_GITHUB_CLIENT_ID=2e78a31afe900fd1aef7 -MY_GITHUB_CLIENT_SECRET=ee6bf4d225d84f355ad4a7b98220a159a9a67552" -B package --file pom.xml
       - uses: actions/upload-artifact@v2
         with:
           name: app.jar
