@@ -1,4 +1,4 @@
-package neuefische.capstone.backend.security.config;
+package neuefische.capstone.backend.security.setup;
 
 import lombok.RequiredArgsConstructor;
 import neuefische.capstone.backend.security.service.PrivilegeService;
@@ -25,7 +25,6 @@ public class SecuritySetup implements ApplicationListener<ContextRefreshedEvent>
     private boolean alreadySetup = false;
     private final CredentialRepo credentialRepo;
     private final RoleService roleService;
-    private final PrivilegeService privilegeService;
     private final PasswordEncoder passwordEncoder;
 
 
