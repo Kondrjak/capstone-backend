@@ -19,7 +19,6 @@ jobs:
       #- name: Test with Maven
       #  run: mvn test
       - name: Build with Maven
-        if: ${GITHUB_CLIENT_ID}
         run: mvn -B package --file pom.xml -DargLine="-MY_GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID} -MY_GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}"
       - uses: actions/upload-artifact@v2
         with:
