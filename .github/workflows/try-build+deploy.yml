@@ -10,6 +10,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup JDK
         uses: actions/setup-java@v2
+        #env:
+        #  GITHUB_CLIENT_ID: ${{ secrets.MY_GITHUB_CLIENT_ID }}
+        #  GITHUB_CLIENT_SECRET: ${{ secrets.MY_GITHUB_CLIENT_SECRET }}
         with:
           java-version: '17'
           distribution: 'adopt'
@@ -28,8 +31,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
-           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
            heroku_app_name: dev-capstone-backend
            heroku_email: ${{ secrets.HEROKU_MAIL }}
            healthcheck: https://dev-capstone-backend.herokuapp.com/health
            checkstring: "Hello there! I'm running."
+        env:
+           MY_GITHUB_CLIENT_ID: ${{ secrets.MY_GITHUB_CLIENT_ID }}
+           HD_RANDOM_DATA: ${{ secrets.MY_GITHUB_CLIENT_SECRET }}
