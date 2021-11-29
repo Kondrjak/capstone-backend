@@ -11,15 +11,15 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v2
         env:
-          GITHUB_CLIENT_ID: 2e78a31afe900fd1aef7
-          GITHUB_CLIENT_SECRET: ee6bf4d225d84f355ad4a7b98220a159a9a67552
+          GITHUB_CLIENT_ID: ${{ secrets.MY_GITHUB_CLIENT_ID }}
+          GITHUB_CLIENT_SECRET: ${{ secrets.MY_GITHUB_CLIENT_SECRET }}
         with:
           java-version: '17'
           distribution: 'adopt'
       #- name: Test with Maven
       #  run: mvn test
       - name: Build with Maven
-        run: mvn -B package --file pom.xml -DargLine="-MY_GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID} -MY_GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}"
+        run: mvn -B package --file pom.xml -DargLine="-MY_GITHUB_CLIENT_ID=2e78a31afe900fd1aef7 -MY_GITHUB_CLIENT_SECRET=ee6bf4d225d84f355ad4a7b98220a159a9a67552"
       - uses: actions/upload-artifact@v2
         with:
           name: app.jar
@@ -36,3 +36,6 @@ jobs:
            heroku_email: ${{ secrets.HEROKU_MAIL }}
            healthcheck: https://dev-capstone-backend.herokuapp.com/health
            checkstring: "Hello there! I'm running."
+        env:
+           MY_GITHUB_CLIENT_ID: ${{ secrets.MY_GITHUB_CLIENT_ID }}
+           HD_RANDOM_DATA: ${{ secrets.MY_GITHUB_CLIENT_SECRET }}
