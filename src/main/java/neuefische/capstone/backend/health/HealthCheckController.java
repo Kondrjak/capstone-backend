@@ -1,4 +1,4 @@
-package neuefische.capstone.backend.custom.controller;
+package neuefische.capstone.backend.health;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

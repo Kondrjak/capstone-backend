@@ -1,30 +1,32 @@
-package neuefische.capstone.backend.testUtils;
+package neuefische.capstone.backend.testUtil;
 
+import lombok.RequiredArgsConstructor;
+import neuefische.capstone.backend.security.service.PrivilegeService;
+import neuefische.capstone.backend.security.service.RoleService;
 import neuefische.capstone.backend.security.storage.CredentialRepo;
-import neuefische.capstone.backend.security.userCredentialModel.Credential;
-import org.springframework.beans.factory.annotation.Autowired;
+import neuefische.capstone.backend.security.model.Credential;
+import neuefische.capstone.backend.security.model.Role;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Optional;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
 @Component
+@RequiredArgsConstructor
 public class TestJwtHeaders {
     private final String username = "someUser";
     private final String password = "somePassword";
-
-    @Autowired
-    private PasswordEncoder encoder;
-
-    @Autowired
-    private CredentialRepo credentialRepo;
+    private final PasswordEncoder encoder;
+    private final CredentialRepo credentialRepo;
+    private final RoleService roleService;
+    private final PrivilegeService privilegeService;
 
     /**
      * In order to go through the jwt token authentication process,
@@ -32,16 +34,14 @@ public class TestJwtHeaders {
      *
      * @return authenticated users http headers for controller tests
      */
-    public HttpHeaders get(int port){
-        Optional<Credential> maybeCredential = credentialRepo.findByUsername(username);
-        return maybeCredential
-                .map(credential -> headersFromExistentUser(port, credential))
-                .orElse( createSomeUserAndReturnHeaders(port));
-    }
-
-    private HttpHeaders createSomeUserAndReturnHeaders(int port) {
+    public HttpHeaders createAdminAndReturnHeaders(int port){
         String hashedPw = encoder.encode(password);
-        Credential hashedCredential = Credential.builder().username(username).password(hashedPw).build();
+        Role admin = roleService.createAdminRole();
+        Credential hashedCredential = Credential.builder()
+                .username(username)
+                .password(hashedPw)
+                .roles(List.of(admin))
+                .build();
         credentialRepo.save(hashedCredential);
         return headersFromExistentUser(port, Credential.builder().username(username).password(password).build());
     }
